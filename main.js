@@ -25,15 +25,34 @@ const scoreDiv = document.querySelector("div#score");
 
 
 
+function resetGame(){
+    humanScore = 0;
+    computerScore = 0;
+    updateScore();
+    resultDiv.textContent = "";
+}
+
+function checkEndOfGame(){
+    if(humanScore >= 5){
+        alert("You win the game.");
+        resetGame();
+    } else if (computerScore >= 5){
+        alert("Sorry, computer wins this time.");
+        resetGame();
+    }
+}
+
 function updateScore(winner){
     if(winner == "Human") humanScore++;
     else if (winner == "Computer") computerScore++;
     scoreDiv.textContent = "Your score: " + humanScore + ", Computer score: " + computerScore;
+    checkEndOfGame();
 }
 updateScore();
 
 
 
+//console.log("Play rock, paper and scissors for 5 rounds.");
 function getComputerChoice(){
     let choice = Math.floor(Math.random() * 3);
     switch (choice){
@@ -95,24 +114,3 @@ function playRound(humanChoice, computerChoice){
             break;
     }
 }
-
-
-function playGame(){
-    //console.log("Play rock, paper and scissors for 5 rounds.");
-    /*for(i = 0; i < 5; i++){
-        const humanSelection = getHumanChoice();
-        const computerSelection = getComputerChoice();
-        playRound(humanSelection, computerSelection);
-    }*/
-    
-    if(humanScore > computerScore){
-        console.log("You win the game.");
-    } else if (humanScore < computerScore){
-        console.log("Sorry, computer wins this time.");
-    } else {
-        console.log("The game came to a draw, try again.");
-    }
-}
-
-//playGame();
-
