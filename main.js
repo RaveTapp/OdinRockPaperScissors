@@ -21,6 +21,16 @@ scissorsButton.addEventListener("click", () =>{
 });
 
 const resultDiv = document.querySelector("div#result");
+const scoreDiv = document.querySelector("div#score");
+
+
+
+function updateScore(winner){
+    if(winner == "Human") humanScore++;
+    else if (winner == "Computer") computerScore++;
+    scoreDiv.textContent = "Your score: " + humanScore + ", Computer score: " + computerScore;
+}
+updateScore();
 
 
 
@@ -36,30 +46,20 @@ function getComputerChoice(){
     }
 }
 
-function getHumanChoice(){
-    let result;
-    while (result != "rock" && result != "paper" && result != "scissors"){
-        result = prompt("Choose rock, paper or scissors.");
-        result.toLowerCase();
-    }
-    return result;
-}
-
 function playRound(humanChoice, computerChoice){
     switch(humanChoice){
         case "rock":
             switch(computerChoice){
                 case "rock":
-                    //console.log();
                     resultDiv.textContent = "Draw.";
                     break;
                 case "paper":
                     resultDiv.textContent = "You lose. Paper beats rock.";
-                    computerScore++;
+                    updateScore("Computer");
                     break;
                 case "scissors":
                     resultDiv.textContent = "You win! Rock beats scissors.";
-                    humanScore++;
+                    updateScore("Human");
                     break;
             }
             break;
@@ -67,14 +67,14 @@ function playRound(humanChoice, computerChoice){
             switch(computerChoice){
                 case "rock":
                     resultDiv.textContent = "You win! Paper beats rock.";
-                    humanScore++;
+                    updateScore("Human");
                     break;
                 case "paper":
                     resultDiv.textContent = "Draw.";
                     break;
                 case "scissors":
                     resultDiv.textContent = "You lose. Scissors beat paper.";
-                    computerScore++;
+                    updateScore("Computer");
                     break;
             }
             break;
@@ -82,11 +82,11 @@ function playRound(humanChoice, computerChoice){
             switch(computerChoice){
                 case "rock":
                     resultDiv.textContent = "You lose. Rock beats scissors.";
-                    computerScore++;
+                    updateScore("Computer");
                     break;
                 case "paper":
                     resultDiv.textContent = "You win! Scissors beat paper.";
-                    humanScore++;
+                    updateScore("Human");
                     break;
                 case "scissors":
                     resultDiv.textContent = "Draw.";
