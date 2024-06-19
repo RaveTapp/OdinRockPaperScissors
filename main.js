@@ -1,3 +1,29 @@
+let humanScore = 0;
+let computerScore = 0;
+
+const rockButton = document.querySelector("button#rock");
+const paperButton = document.querySelector("button#paper");
+const scissorsButton = document.querySelector("button#scissors");
+
+rockButton.addEventListener("click", () =>{
+    const computerSelection = getComputerChoice();
+    playRound("rock", computerSelection);
+});
+
+paperButton.addEventListener("click", () =>{
+    const computerSelection = getComputerChoice();
+    playRound("paper", computerSelection);
+});
+
+scissorsButton.addEventListener("click", () =>{
+    const computerSelection = getComputerChoice();
+    playRound("scissors", computerSelection);
+});
+
+const resultDiv = document.querySelector("div#result");
+
+
+
 function getComputerChoice(){
     let choice = Math.floor(Math.random() * 3);
     switch (choice){
@@ -19,25 +45,20 @@ function getHumanChoice(){
     return result;
 }
 
- let humanScore = 0;
- let computerScore = 0;
-
-//console.log(getComputerChoice());
-//console.log(getHumanChoice());
-
 function playRound(humanChoice, computerChoice){
     switch(humanChoice){
         case "rock":
             switch(computerChoice){
                 case "rock":
-                    console.log("Draw.");
+                    //console.log();
+                    resultDiv.textContent = "Draw.";
                     break;
                 case "paper":
-                    console.log("You lose. Paper beats rock.");
+                    resultDiv.textContent = "You lose. Paper beats rock.";
                     computerScore++;
                     break;
                 case "scissors":
-                    console.log("You win! Rock beats scissors.");
+                    resultDiv.textContent = "You win! Rock beats scissors.";
                     humanScore++;
                     break;
             }
@@ -45,14 +66,14 @@ function playRound(humanChoice, computerChoice){
         case "paper":
             switch(computerChoice){
                 case "rock":
-                    console.log("You win! Paper beats rock.");
+                    resultDiv.textContent = "You win! Paper beats rock.";
                     humanScore++;
                     break;
                 case "paper":
-                    console.log("Draw.");
+                    resultDiv.textContent = "Draw.";
                     break;
                 case "scissors":
-                    console.log("You lose. Scissors beat paper.");
+                    resultDiv.textContent = "You lose. Scissors beat paper.";
                     computerScore++;
                     break;
             }
@@ -60,15 +81,15 @@ function playRound(humanChoice, computerChoice){
         case "scissors":
             switch(computerChoice){
                 case "rock":
-                    console.log("You lose. Rock beats scissors.");
+                    resultDiv.textContent = "You lose. Rock beats scissors.";
                     computerScore++;
                     break;
                 case "paper":
-                    console.log("You win! Scissors beat paper.");
+                    resultDiv.textContent = "You win! Scissors beat paper.";
                     humanScore++;
                     break;
                 case "scissors":
-                    console.log("Draw.");
+                    resultDiv.textContent = "Draw.";
                     break;
             }
             break;
@@ -95,21 +116,3 @@ function playGame(){
 
 //playGame();
 
-const rockButton = document.querySelector("#rock");
-const paperButton = document.querySelector("button#paper");
-const scissorsButton = document.querySelector("button#scissors");
-
-rockButton.addEventListener("click", () =>{
-    const computerSelection = getComputerChoice();
-    playRound("rock", computerSelection);
-});
-
-paperButton.addEventListener("click", () =>{
-    const computerSelection = getComputerChoice();
-    playRound("paper", computerSelection);
-});
-
-scissorsButton.addEventListener("click", () =>{
-    const computerSelection = getComputerChoice();
-    playRound("scissors", computerSelection);
-});
